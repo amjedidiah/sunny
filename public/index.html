@@ -60,23 +60,23 @@
     <!-- <link rel="stylesheet" href="./css/main.css" /> -->
 
     <!-- Google FOnts -->
-    <!-- <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap"
       rel="stylesheet"
-    /> -->
+    />
 
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/7.20.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.20.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.20.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.20.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.20.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
   </head>
 
-  <body style="background: #2e2e2e; color: #ffffff">
+  <body style="background: #2e2e2e; color: #fee1e2">
     <!-- [if IE]>
     <p class="browserupgrade">
       You are using an <strong>outdated</strong> browser. Please
@@ -92,42 +92,45 @@
 
     <div id="wrapper">
       <!-- Document Main Content -->
-      <main>
+      <main class="d-flex">
         <section>
           <h1 class="d-none">Welcome Home</h1>
           <article class="text-center">
             <h2 class="d-none">Temperature Info</h2>
             <div>
               <h3 class="d-none">List of temperatures</h3>
-              <div class="temperature-list">
-                <div class="temperature">68&deg;;</div>
+              <div class="temperature-list d-flex">
+                <div class="temperature">
+                  <p>Lagos, Nigeria</p>
+                  <p class="display-1">68&deg;</p>
+                </div>
                 <div class="temperature">
                   <p>Tues</p>
-                  <p class="lead">68&deg;;</p>
+                  <p class="lead">68&deg;</p>
                   <p><i class="fas fa-cloud"></i> 50%</p>
                 </div>
 
                 <div class="temperature">
                   <p>Tues</p>
-                  <p class="lead">68&deg;;</p>
+                  <p class="lead">68&deg;</p>
                   <p><i class="fas fa-cloud"></i> 50%</p>
                 </div>
 
                 <div class="temperature">
                   <p>Tues</p>
-                  <p class="lead">68&deg;;</p>
+                  <p class="lead">68&deg;</p>
                   <p><i class="fas fa-cloud"></i> 50%</p>
                 </div>
 
                 <div class="temperature">
                   <p>Tues</p>
-                  <p class="lead">68&deg;;</p>
+                  <p class="lead">68&deg;</p>
                   <p><i class="fas fa-cloud"></i> 50%</p>
                 </div>
 
                 <div class="temperature">
                   <p>Tues</p>
-                  <p class="lead">68&deg;;</p>
+                  <p class="lead">68&deg;</p>
                   <p><i class="fas fa-cloud"></i> 50%</p>
                 </div>
               </div>
@@ -142,11 +145,7 @@
             <h2 class="d-none">Extra Temperature Info</h2>
             <div class="sunrise-info">
               <h3 class="d-none">Sunrise info</h3>
-              <img
-                src="./img/sunrise.png"
-                class="img-fluid w-100"
-                alt="Sunrise"
-              />
+              <img src="./img/sunrise.png" class="img-fluid" alt="Sunrise" />
               <div class="sunrise">
                 <p>Sunrise</p>
                 <p>6.00 am</p>
@@ -160,7 +159,7 @@
             <div class="following-days mt-1">
               <h3 class="d-none">Temperature for following days</h3>
 
-              <div class="days">
+              <div class="days d-flex">
                 <div class="day">
                   <p><i class="fas fa-cloud"></i></p>
                   <p>Today</p>
@@ -189,12 +188,125 @@
         </section>
       </main>
 
-      <aside></aside>
+      <aside>
+        <header class="d-flex header-aside aside-major">
+          <h2 class="lead">Friday September 11, 2020</h2>
+          <p>
+            <i class="fas fa-sun fa-3x text-primary"></i
+            ><span role="contentinfo" class="d-none">Sunny</span>
+          </p>
+        </header>
+
+        <section class="aside-major">
+          <h2 class="d-none">Aside</h2>
+          <article class="d-flex nearby-times">
+            <h2 class="d-none">Nearby Times</h2>
+            <div class="nearby-item">
+              <p>Lagos, Nigeria</p>
+              <div class="d-flex">
+                <p class="display-2">6:40</p>
+                <p class="display-4">PM</p>
+              </div>
+            </div>
+            <div class="nearby-item">
+              <p class="lead">Boulder</p>
+              <p class="lead">4:40 pm</p>
+            </div>
+            <div class="nearby-item">
+              <p class="lead">Boulder</p>
+              <p class="lead">4:40 pm</p>
+            </div>
+            <div class="nearby-item">
+              <p class="lead">Boulder</p>
+              <p class="lead">4:40 pm</p>
+            </div>
+          </article>
+
+          <article class="d-flex additional-info">
+            <h2 class="d-none">Additional Info</h2>
+            <div class="info">
+              <h3 class="title">Wind</h3>
+              <p>12rpm</p>
+            </div>
+            <div class="info">
+              <h3 class="title">Humidity</h3>
+              <p>12rpm</p>
+            </div>
+            <div class="info">
+              <h3 class="title">Viusibility</h3>
+              <p>12rpm</p>
+            </div>
+            <div class="info">
+              <h3 class="title">UV</h3>
+              <p>12rpm</p>
+            </div>
+          </article>
+
+          <article class="temperature-bar">
+            <h2 class="d-none">Temperature Bar</h2>
+            <div class="temperature-bar-indicator" role="progressbar"></div>
+            <div>
+              <h3 class="title">Weather</h3>
+              <p>68&deg; - Drizzle starting in 45 minutes.</p>
+            </div>
+          </article>
+        </section>
+
+        <footer class="saved-cities">
+          <h2 class="display-4">Saved cities</h2>
+          <div class="saved-cities-container d-flex">
+            <div class="city">
+              <h3>NYC</h3>
+              <div>
+                <p class="display-4">70&deg;</p>
+                <p><i class="fas fa-cloud"></i> 50%</p>
+              </div>
+            </div>
+            <div class="city">
+              <h3>NYC</h3>
+              <div>
+                <p class="display-4">70&deg;</p>
+                <p><i class="fas fa-cloud"></i> 50%</p>
+              </div>
+            </div>
+            <div class="city">
+              <h3>NYC</h3>
+              <div>
+                <p class="display-4">70&deg;</p>
+                <p><i class="fas fa-cloud"></i> 50%</p>
+              </div>
+            </div>
+            <div class="city">
+              <h3>NYC</h3>
+              <div>
+                <p class="display-4">70&deg;</p>
+                <p><i class="fas fa-cloud"></i> 50%</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-cities d-none">
+            <div class="city">
+              <p class="lead">0&deg;</p>
+              <p>Start searching to see your saved cities here</p>
+              <p><i class="fas fa-cloud"></i> 0%</p>
+            </div>
+          </div>
+        </footer>
+      </aside>
     </div>
 
     <!-- Document Footer -->
     <footer>
-      <nav></nav>
+      <nav>
+        <div>
+          <a><i class="fa fa-home"></i></a>
+        </div>
+        <div>
+          <a><i class="fas fa-cog"></i></a>
+          <a><i class="fas fa-search"></i></a>
+        </div>
+      </nav>
     </footer>
 
     <!-- FontAwesome -->
@@ -212,10 +324,10 @@
       crossorigin="anonymous"
     ></script> -->
     <!-- <script src="js/vendor/jquery-3.4.1.min.js" defer></script> -->
-    <!-- <script
+    <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
       defer
-    ></script> -->
+    ></script>
 
     <!-- Optional JavaScript -->
     <!-- Popper.js, then Bootstrap JS -->
@@ -245,11 +357,6 @@
     </script>
 
     <noscript id="deferred-styles">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;800&family=Lato:ital,wght@0,400;1,400&display=swap"
-        rel="stylesheet"
-      />
-
       <!-- Animate CSS -->
       <link
         rel="stylesheet"
@@ -266,10 +373,6 @@
 
       <link rel="stylesheet" href="css/normalize.min.css" />
       <link rel="stylesheet" href="css/bootstrap.min.css" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap"
-        rel="stylesheet"
-      />
       <!-- Master CSS -->
       <link rel="stylesheet" href="css/master.min.css" />
       <link rel="stylesheet" href="css/home.min.css" />
@@ -326,4 +429,6 @@
 <!--
   TODO: Get and include Google site verification file
   TODO: Get and include Lighthouse test file by running test on lighthouse site
+
+  TODO: Default show location infor for current location, if enabled or Lagos(if not enabled)
 -->

@@ -11,8 +11,7 @@ const filesToCache = [
   // "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
   // "https://kit-free.fontawesome.com/releases/latest/css/free.min.css",
   // "https://kit.fontawesome.com/a2ea8d437a.js",
-  // "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
-  "https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap"
+  "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 ];
 const vNum = Math.floor(Math.random() * 1000000000000) + 1;
 const staticCacheName = `sunny-cache-v${vNum}`;

@@ -13,7 +13,7 @@ body {
   font-family: "Montserrat", sans-serif;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-  color: #ffffff;
+  color: #fee1e2;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -55,7 +55,7 @@ a {
 a,
 a:hover,
 a.active {
-  color: #ffffff;
+  color: #fee1e2;
 }
 
 a:hover,

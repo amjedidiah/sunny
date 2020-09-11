@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.text-primary {
+  color: #fe6b6e;
+}
+
 .img-fluid {
   max-width: 100%;
   height: auto;
@@ -27,4 +31,20 @@
 
 .w-100 {
   width: 100%;
+}
+
+.display-1 {
+  font-size: 5em;
+}
+
+.display-2 {
+  font-size: 4em;
+}
+
+.display-4 {
+  font-size: 2em;
+}
+
+.d-flex {
+  display: flex;
 }
