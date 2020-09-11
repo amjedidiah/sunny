@@ -1,6 +1,7 @@
 {
   "short_name": "Sunny",
   "name": "Sunny",
+  "description": "Real-time weather information by Jedidiah Amaraegbu",
   "display": "fullscreen",
   "icons": [
     {

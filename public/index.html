@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
 
     <title>Sunny</title>
-    <meta name="description" content="Weather app by Jedidiah Amaraegbu" />
+    <meta
+      name="description"
+      content="Real-time weather information by Jedidiah Amaraegbu"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--
@@ -16,7 +19,7 @@
     -->
     <meta
       name="msapplication-tooltip"
-      content="Weather app by Jedidiah Amaraegbu"
+      content="Real-time weather information by Jedidiah Amaraegbu"
     />
     <meta name="msapplication-TileImage" content="icon.png" />
     <!-- Make it possible to pin app on mobile -->
@@ -101,43 +104,90 @@
               <h3 class="d-none">List of temperatures</h3>
               <div class="temperature-list d-flex">
                 <div class="temperature">
-                  <p>Lagos, Nigeria</p>
-                  <p class="display-1">68&deg;</p>
+                  <p class="current-city loading">fetching searched city...</p>
+                  <p class="display-1 loading current-temp">
+                    fetching current temp...
+                  </p>
                 </div>
                 <div class="temperature">
-                  <p>Tues</p>
-                  <p class="lead">68&deg;</p>
-                  <p><i class="fas fa-cloud"></i> 50%</p>
-                </div>
-
-                <div class="temperature">
-                  <p>Tues</p>
-                  <p class="lead">68&deg;</p>
-                  <p><i class="fas fa-cloud"></i> 50%</p>
-                </div>
-
-                <div class="temperature">
-                  <p>Tues</p>
-                  <p class="lead">68&deg;</p>
-                  <p><i class="fas fa-cloud"></i> 50%</p>
-                </div>
-
-                <div class="temperature">
-                  <p>Tues</p>
-                  <p class="lead">68&deg;</p>
-                  <p><i class="fas fa-cloud"></i> 50%</p>
+                  <p class="loading hourly hourly-0">
+                    fetching current hour...
+                  </p>
+                  <p class="lead loading hourly-temp hourly-temp-0">
+                    fetching current temperature
+                  </p>
+                  <p>
+                    <i class="fas fa-cloud"></i>
+                    <span class="loading hourly-cloudiness" role="contentinfo"
+                      >fetching cloudiness...</span
+                    >
+                  </p>
                 </div>
 
                 <div class="temperature">
-                  <p>Tues</p>
-                  <p class="lead">68&deg;</p>
-                  <p><i class="fas fa-cloud"></i> 50%</p>
+                  <p class="loading hourly hourly-1">fetching next 1 hour...</p>
+                  <p class="lead loading hourly-temp hourly-temp-1">
+                    fetching temperature in 1 hour...
+                  </p>
+                  <p>
+                    <i class="fas fa-cloud"></i>
+                    <span class="loading hourly-cloudiness" role="contentinfo"
+                      >fetching cloudiness...</span
+                    >
+                  </p>
+                </div>
+
+                <div class="temperature">
+                  <p class="loading hourly hourly-2">
+                    fetching next 2 hours...
+                  </p>
+                  <p class="lead loading hourly-temp hourly-temp-2">
+                    fetching temperature in 2 hour...
+                  </p>
+                  <p>
+                    <i class="fas fa-cloud"></i>
+                    <span class="loading hourly-cloudiness" role="contentinfo"
+                      >fetching cloudiness...</span
+                    >
+                  </p>
+                </div>
+
+                <div class="temperature">
+                  <p class="loading hourly hourly-3">
+                    fetching next 3 hours...
+                  </p>
+                  <p class="lead loading hourly-temp hourly-temp-3">
+                    fetching temperature in 3 hour...
+                  </p>
+                  <p>
+                    <i class="fas fa-cloud"></i>
+                    <span class="loading hourly-cloudiness" role="contentinfo"
+                      >fetching cloudiness...</span
+                    >
+                  </p>
+                </div>
+
+                <div class="temperature">
+                  <p class="loading hourly hourly-4">
+                    fetching next 4 hours...
+                  </p>
+                  <p class="lead loading hourly-temp hourly-temp-4">
+                    fetching temperature in 4 hour...
+                  </p>
+                  <p>
+                    <i class="fas fa-cloud"></i>
+                    <span class="loading hourly-cloudiness" role="contentinfo"
+                      >fetching cloudiness...</span
+                    >
+                  </p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 class="my-4">Drizzle starting in 15 minutes</h3>
+              <h3 class="my-4 loading weather-description">
+                fetching weather description
+              </h3>
             </div>
           </article>
 
@@ -148,11 +198,11 @@
               <img src="./img/sunrise.png" class="img-fluid" alt="Sunrise" />
               <div class="sunrise">
                 <p>Sunrise</p>
-                <p>6.00 am</p>
+                <p class="loading-sunrise">fetching sunrise...</p>
               </div>
               <div class="sunset">
                 <p>Sunset</p>
-                <p>7.00 pm</p>
+                <p class="loading-sunset">fetching sunset...</p>
               </div>
             </div>
 
@@ -161,24 +211,40 @@
 
               <div class="days d-flex">
                 <div class="day">
-                  <p><i class="fas fa-cloud"></i></p>
+                  <p class="loading daily-cloud">fetching rain icon...</p>
                   <p>Today</p>
-                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                  <p>
+                    <span class="loading daily-temp" role="contentinfo"
+                      >fetching daily temp. range</span
+                    ><br />Rain
+                    <span class="loading daily-rain" role="contentinfo"
+                      >fetching daily rain...</span
+                    >
+                  </p>
                 </div>
                 <div class="day">
-                  <p><i class="fas fa-cloud"></i></p>
+                  <p class="loading daily-cloud">fetching rain icon...</p>
                   <p>Tomorrow</p>
-                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                  <p>
+                    <span class="loading daily-temp" role="contentinfo"
+                      >fetching daily temp. range</span
+                    ><br />Rain
+                    <span class="loading daily-rain" role="contentinfo"
+                      >fetching daily rain...</span
+                    >
+                  </p>
                 </div>
                 <div class="day">
-                  <p><i class="fas fa-cloud"></i></p>
-                  <p>Day</p>
-                  <p>64&deg; - 74&deg;<br />Rain 70</p>
-                </div>
-                <div class="day">
-                  <p><i class="fas fa-cloud"></i></p>
-                  <p>Day</p>
-                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                  <p class="loading daily-cloud">fetching rain icon...</p>
+                  <p>Next Tomorrow</p>
+                  <p>
+                    <span class="loading daily-temp" role="contentinfo"
+                      >fetching daily temp. range</span
+                    ><br />Rain
+                    <span class="loading daily-rain" role="contentinfo"
+                      >fetching daily rain...</span
+                    >
+                  </p>
                 </div>
               </div>
             </div>
@@ -190,7 +256,7 @@
 
       <aside>
         <header class="d-flex header-aside aside-major">
-          <h2 class="lead">Friday September 11, 2020</h2>
+          <h2 class="lead loading" id="userFullDate">Fetching GMT data...</h2>
           <p>
             <i class="fas fa-sun fa-3x text-primary"></i
             ><span role="contentinfo" class="d-none">Sunny</span>
@@ -202,23 +268,10 @@
           <article class="d-flex nearby-times">
             <h2 class="d-none">Nearby Times</h2>
             <div class="nearby-item">
-              <p>Lagos, Nigeria</p>
+              <p class="current-city loading">fetching searched city...</p>
               <div class="d-flex">
-                <p class="display-2">6:40</p>
-                <p class="display-4">PM</p>
+                <p class="display-2" id="majorTime">fetching current time...</p>
               </div>
-            </div>
-            <div class="nearby-item">
-              <p class="lead">Boulder</p>
-              <p class="lead">4:40 pm</p>
-            </div>
-            <div class="nearby-item">
-              <p class="lead">Boulder</p>
-              <p class="lead">4:40 pm</p>
-            </div>
-            <div class="nearby-item">
-              <p class="lead">Boulder</p>
-              <p class="lead">4:40 pm</p>
             </div>
           </article>
 
@@ -226,19 +279,19 @@
             <h2 class="d-none">Additional Info</h2>
             <div class="info">
               <h3 class="title">Wind</h3>
-              <p>12rpm</p>
+              <p class="loading wind">fetching wind speed...</p>
             </div>
             <div class="info">
               <h3 class="title">Humidity</h3>
-              <p>12rpm</p>
+              <p class="loading humidity">fetching humidity...</p>
             </div>
             <div class="info">
               <h3 class="title">Viusibility</h3>
-              <p>12rpm</p>
+              <p class="loading visibility">fetching visibility...</p>
             </div>
             <div class="info">
-              <h3 class="title">UV</h3>
-              <p>12rpm</p>
+              <h3 class="title">UVI</h3>
+              <p class="loading uvi">fetching UVI...</p>
             </div>
           </article>
 
@@ -247,37 +300,57 @@
             <div class="temperature-bar-indicator" role="progressbar"></div>
             <div>
               <h3 class="title">Weather</h3>
-              <p>68&deg; - Drizzle starting in 45 minutes.</p>
+              <p>
+                <span class="current-temp" role="contentinfo"
+                  >fetching current temp...</span
+                >
+                -
+                <span class="loading weather-description" role="contentinfo"
+                  >fetching weather description...</span
+                >
+              </p>
             </div>
           </article>
         </section>
 
         <footer class="saved-cities">
-          <h2 class="display-4">Saved cities</h2>
+          <p class="display-4">Saved cities</p>
           <div class="saved-cities-container d-flex">
             <div class="city">
-              <h3>NYC</h3>
+              <div>
+                <h3 class="name">NYC</h3>
+                <h2>21:00</h2>
+              </div>
               <div>
                 <p class="display-4">70&deg;</p>
                 <p><i class="fas fa-cloud"></i> 50%</p>
               </div>
             </div>
             <div class="city">
-              <h3>NYC</h3>
+              <div>
+                <h3 class="name">NYC</h3>
+                <h2>21:00</h2>
+              </div>
               <div>
                 <p class="display-4">70&deg;</p>
                 <p><i class="fas fa-cloud"></i> 50%</p>
               </div>
             </div>
             <div class="city">
-              <h3>NYC</h3>
+              <div>
+                <h3 class="name">NYC</h3>
+                <h2>21:00</h2>
+              </div>
               <div>
                 <p class="display-4">70&deg;</p>
                 <p><i class="fas fa-cloud"></i> 50%</p>
               </div>
             </div>
             <div class="city">
-              <h3>NYC</h3>
+              <div>
+                <h3 class="name">NYC</h3>
+                <h2>21:00</h2>
+              </div>
               <div>
                 <p class="display-4">70&deg;</p>
                 <p><i class="fas fa-cloud"></i> 50%</p>
@@ -303,11 +376,39 @@
           <a><i class="fa fa-home"></i></a>
         </div>
         <div>
-          <a><i class="fas fa-cog"></i></a>
-          <a><i class="fas fa-search"></i></a>
+          <a
+            ><i class="fas fa-cog"></i
+            ><span class="d-none" role="contentinfo">Settings icon</span></a
+          >
+          <a onClick="showForm();"
+            ><i class="fas fa-search"></i
+            ><span class="d-none" role="contentinfo">Search icon</span></a
+          >
         </div>
       </nav>
     </footer>
+
+    <div class="modal d-flex align-items-center" role="dialog">
+      <div class="spinner v-parent" role="dialog">
+        <p class="v-child modal-child">
+          <img src="icon192.png" alt="site icon" />
+        </p>
+        <div class="d-none modal-child v-child" role="form">
+          <form onSubmit="" id="inputForm">
+            <div class="form-group">
+              <label for="place" class="lead">City name</label>
+              <input
+                name="place"
+                id="place"
+                type="search"
+                placeholder="e.g: Lagos"
+                class="form-control"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!-- FontAwesome -->
     <script

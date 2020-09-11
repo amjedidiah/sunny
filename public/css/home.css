@@ -10,7 +10,7 @@
 main,
 aside {
   /* border: 1px solid red; */
-  padding: 0px 5% 50px;
+  padding: 0px 5% 55px;
   flex: 1 0 100%;
 }
 
@@ -18,7 +18,7 @@ main {
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
-  padding: 50px 5% 20px;
+  padding: 55px 5% 20px;
 }
 
 main section {
@@ -32,7 +32,7 @@ main .temperature-list {
 }
 
 main .temperature-list .temperature {
-  flex: 0 1;
+  flex: 1 0;
   margin-right: 20px;
   margin-top: 10px;
 }
@@ -69,7 +69,7 @@ main #sunrise .sunset {
 main #sunrise .sunrise p:nth-child(2),
 main #sunrise .sunset p:nth-child(2) {
   font-weight: lighter;
-  font-size: smaller;
+  font-size: smallr;
 }
 
 main #sunrise .following-days .days {
@@ -86,11 +86,11 @@ main #sunrise .following-days .days .day p {
 
 main #sunrise .following-days .days .day p:nth-child(3) {
   font-weight: lighter;
-  font-size: smaller;
+  font-size: small;
 }
 
 aside .aside-major:nth-child(2) {
-  margin: 30px 0 50px;
+  margin: 30px 0 40px;
 }
 
 aside .header-aside {
@@ -182,6 +182,14 @@ aside .saved-cities .city {
   flex: 1 1 40%;
 }
 
+aside .saved-cities .city .name {
+  margin-bottom: 0;
+}
+
+aside .saved-cities .city .name + h2 {
+  margin-top: 0;
+}
+
 aside .saved-cities .city:nth-child(odd) {
   margin-right: 15px;
 }
@@ -209,12 +217,49 @@ footer nav a:nth-child(odd) {
   margin-right: 20px;
 }
 
+.modal {
+  width: 100%;
+  height: 100%;
+  background: rgb(254, 225, 226, 1);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modal .spinner,
+.modal .v-child {
+  text-align: center;
+}
+
+.modal .spinner p {
+  color: #fe6b6e;
+  font-size: 3em;
+}
+
+.modal .modal-child:nth-child(2) {
+  justify-content: center;
+}
+
+.modal form {
+  color: #2e2e2e;
+  padding: 30px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.modal form label {
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 500;
+}
+
 @media (min-width: 992px) {
   main,
   aside {
     flex-basis: 50%;
     max-width: unset;
-    padding: 50px 5%;
+    padding: 0px 5% 40px;
   }
 
   main .temperature-list .temperature:nth-child(1) {

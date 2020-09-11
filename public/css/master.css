@@ -9,7 +9,7 @@ body,
 }
 
 body {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Montserrat", sans-serif;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
@@ -91,8 +91,10 @@ button:hover {
 .form-control:-webkit-autofill:hover,
 .form-control:-webkit-autofill:focus,
 .form-control:-webkit-autofill:active {
-  box-shadow: none;
-  -webkit-box-shadow: 0 0 0 100 #2e2e2e inset;
+  -webkit-box-shadow: 0 0 0 100 #fee1e2 inset !important;
+  -moz-box-shadow: 0 0 0 100 #fee1e2 inset !important;
+  -o-box-shadow: 0 0 0 100 #fee1e2 inset !important;
+  box-shadow: 0 0 0 100 #fee1e2 inset !important;
   font-family: "Montserrat", sans-serif;
 }
 
