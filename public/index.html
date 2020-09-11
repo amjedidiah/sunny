@@ -60,8 +60,10 @@
     <!-- <link rel="stylesheet" href="./css/main.css" /> -->
 
     <!-- Google FOnts -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
@@ -88,14 +90,107 @@
       <nav></nav>
     </header>
 
-    <!-- Document Main Content -->
-    <main class="h-100">
-      <section>Hello</section>
+    <div id="wrapper">
+      <!-- Document Main Content -->
+      <main>
+        <section>
+          <h1 class="d-none">Welcome Home</h1>
+          <article class="text-center">
+            <h2 class="d-none">Temperature Info</h2>
+            <div>
+              <h3 class="d-none">List of temperatures</h3>
+              <div class="temperature-list">
+                <div class="temperature">68&deg;;</div>
+                <div class="temperature">
+                  <p>Tues</p>
+                  <p class="lead">68&deg;;</p>
+                  <p><i class="fas fa-cloud"></i> 50%</p>
+                </div>
 
-      <p id="load">Firebase SDK Loading&hellip;</p>
-    </main>
+                <div class="temperature">
+                  <p>Tues</p>
+                  <p class="lead">68&deg;;</p>
+                  <p><i class="fas fa-cloud"></i> 50%</p>
+                </div>
 
-    <aside></aside>
+                <div class="temperature">
+                  <p>Tues</p>
+                  <p class="lead">68&deg;;</p>
+                  <p><i class="fas fa-cloud"></i> 50%</p>
+                </div>
+
+                <div class="temperature">
+                  <p>Tues</p>
+                  <p class="lead">68&deg;;</p>
+                  <p><i class="fas fa-cloud"></i> 50%</p>
+                </div>
+
+                <div class="temperature">
+                  <p>Tues</p>
+                  <p class="lead">68&deg;;</p>
+                  <p><i class="fas fa-cloud"></i> 50%</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="my-4">Drizzle starting in 15 minutes</h3>
+            </div>
+          </article>
+
+          <article id="sunrise" class="text-center">
+            <h2 class="d-none">Extra Temperature Info</h2>
+            <div class="sunrise-info">
+              <h3 class="d-none">Sunrise info</h3>
+              <img
+                src="./img/sunrise.png"
+                class="img-fluid w-100"
+                alt="Sunrise"
+              />
+              <div class="sunrise">
+                <p>Sunrise</p>
+                <p>6.00 am</p>
+              </div>
+              <div class="sunset">
+                <p>Sunset</p>
+                <p>7.00 pm</p>
+              </div>
+            </div>
+
+            <div class="following-days mt-1">
+              <h3 class="d-none">Temperature for following days</h3>
+
+              <div class="days">
+                <div class="day">
+                  <p><i class="fas fa-cloud"></i></p>
+                  <p>Today</p>
+                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                </div>
+                <div class="day">
+                  <p><i class="fas fa-cloud"></i></p>
+                  <p>Tomorrow</p>
+                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                </div>
+                <div class="day">
+                  <p><i class="fas fa-cloud"></i></p>
+                  <p>Day</p>
+                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                </div>
+                <div class="day">
+                  <p><i class="fas fa-cloud"></i></p>
+                  <p>Day</p>
+                  <p>64&deg; - 74&deg;<br />Rain 70</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <p id="load" class="d-none">Firebase SDK Loading&hellip;</p>
+        </section>
+      </main>
+
+      <aside></aside>
+    </div>
 
     <!-- Document Footer -->
     <footer>
@@ -170,8 +265,10 @@
       /> -->
 
       <link rel="stylesheet" href="css/normalize.min.css" />
+      <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- Master CSS -->
       <link rel="stylesheet" href="css/master.min.css" />
+      <link rel="stylesheet" href="css/home.min.css" />
     </noscript>
     <script>
       var loadDeferredStyles = function () {

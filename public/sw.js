@@ -5,6 +5,8 @@ const filesToCache = [
   "js/main.js",
   "js/plugins.js",
   "css/master.min.css",
+  "css/bootstrap.min.css",
+  "css/home.min.css",
   "css/normalize.min.css",
   // "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
   // "https://kit-free.fontawesome.com/releases/latest/css/free.min.css",
