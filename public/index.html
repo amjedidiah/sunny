@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Sunny</title>
+    <meta name="description" content="Weather app by Jedidiah Amaraegbu" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--
+      Give name for pinning site to Taskbar on WIndows.
+    -->
+    <meta name="application-name" content="Sunny" />
+    <!--
+      Give site tooltip for pinning
+    -->
+    <meta
+      name="msapplication-tooltip"
+      content="Weather app by Jedidiah Amaraegbu"
+    />
+    <meta name="msapplication-TileImage" content="icon.png" />
+    <!-- Make it possible to pin app on mobile -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- Get Site to look like app on iOS  -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#2e2e2e" />
+    <!--
+      Add Title for when site is pinned to iOS screen
+    -->
+    <meta name="apple-mobile-web-app-title" content="Sunny" />
+    <meta name="theme-color" content="#2e2e2e" />
+
+    <!--
+      Add icon for when pinned to iOS & any other mobile
+     -->
+    <link rel="icon" sizes="192x192" href="icon192.png" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!--
+      Display certain image when site is loaded as app on iOS
+     -->
+    <link
+      rel="apple-touch-startup-image"
+      media="(max-width: 480px) and (-webkit-min-device-pixel-ratio: 2)"
+      href="icon.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+
+    <!--
+      DNS Prefetching: prefetches the site that is included in the href
+    -->
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://stackpath.bootstrapcdn.com" />
+    <link rel="dns-prefetch" href="https://free.fontawesome.com" />
+    <link rel="dns-prefetch" href="https://kit-free.fontawesome.com" />
+    <link rel="preconnect" href="https://kit-free.fontawesome.com" />
+    <link rel="dns-prefetch" href="https://amjedidiah.github.io/Sunny" />
+
+    <!-- <link rel="stylesheet" href="./css/main.css" /> -->
+
+    <!-- Google FOnts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+  </head>
+
+  <body style="background: #2e2e2e">
+    <!-- [if IE]>
+    <p class="browserupgrade">
+      You are using an <strong>outdated</strong> browser. Please
+      <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+      your experience and security.
+    </p>
+    <![endif] -->
+
+    <!-- Document Header -->
+    <header>
+      <nav></nav>
+    </header>
+
+    <!-- Document Main Content -->
+    <main class="h-100">
+      <section>Hello</section>
+
+      <p id="load">Firebase SDK Loading&hellip;</p>
+    </main>
+
+    <aside></aside>
+
+    <!-- Document Footer -->
+    <footer>
+      <nav></nav>
+    </footer>
+
+    <!-- FontAwesome -->
+    <script
+      src="https://kit.fontawesome.com/a2ea8d437a.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+
+    <!-- Modernizr -->
+    <script src="js/vendor/modernizr-3.8.0.min.js" async></script>
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script> -->
+    <!-- <script src="js/vendor/jquery-3.4.1.min.js" defer></script> -->
+    <!-- <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      defer
+    ></script> -->
+
+    <!-- Optional JavaScript -->
+    <!-- Popper.js, then Bootstrap JS -->
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+      defer
+    ></script> -->
+
+    <script src="js/plugins.min.js" defer></script>
+    <script src="js/main.js" defer></script>
+
+    <script>
+      // ServiceWorker is a progressive technology. Ignore unsupported browsers
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () =>
+          navigator.serviceWorker.register("sw.js")
+        );
+      }
+    </script>
+
+    <noscript id="deferred-styles">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;800&family=Lato:ital,wght@0,400;1,400&display=swap"
+        rel="stylesheet"
+      />
+
+      <!-- Animate CSS -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+      />
+
+      <!-- BootStrap CSS -->
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+      />
+
+      <link rel="stylesheet" href="css/normalize.min.css" />
+      <!-- Master CSS -->
+      <link rel="stylesheet" href="css/master.min.css" />
+    </noscript>
+    <script>
+      var loadDeferredStyles = function () {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement);
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf =
+        window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame;
+      if (raf)
+        raf(function () {
+          window.setTimeout(loadDeferredStyles, 0);
+        });
+      else window.addEventListener("load", loadDeferredStyles);
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ["auth", "database", "messaging", "storage"].filter(
+            (feature) => typeof app[feature] === "function"
+          );
+          document.getElementById(
+            "load"
+          ).innerHTML = `Firebase SDK loaded with ${features.join(", ")}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById("load").innerHTML =
+            "Error loading the Firebase SDK, check the console.";
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!--
+  TODO: Get and include Google site verification file
+  TODO: Get and include Lighthouse test file by running test on lighthouse site
+-->

@@ -1,0 +1,15 @@
+[
+  { "cloud": "<i class='fas fa-cloud'></i>" },
+  { "cloud-night": "<i class='fas fa-cloud-moon'></i>" },
+  { "cloud-night-rain": "<i class='fas fa-cloud-moon-rain'></i>" },
+  { "cloud-rain": "<i class='fas fa-cloud-rain'></i>" },
+  { "cloud-rain-heavy": "<i class='fas fa-cloud-showers-heavy'></i>" },
+  { "cloud-sun": "<i class='fas fa-cloud-sun'></i>" },
+  { "sun": "<i class='fas fa-sun'></i>" },
+  { "smog": "<i class='fas fa-smog'></i>" },
+  { "snowflake": "<i class='fas fa-snowflake'></i>" },
+  { "temperature-high": "<i class='fas fa-temperature-high'></i>" },
+  { "temperature-low": "<i class='fas fa-temperature-low'></i>" },
+  { "umbrella": "<i class='fas fa-umbrella'></i>" },
+  { "wind": "<i class='fas fa-wind'></i>" }
+]
