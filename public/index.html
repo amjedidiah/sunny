@@ -268,7 +268,7 @@
           <article class="d-flex nearby-times">
             <h2 class="d-none">Nearby Times</h2>
             <div class="nearby-item">
-              <p class="current-city loading">fetching searched city...</p>
+              <p>TIME</p>
               <div class="d-flex">
                 <p class="display-2" id="majorTime">fetching current time...</p>
               </div>
@@ -390,11 +390,13 @@
 
     <div class="modal d-flex align-items-center" role="dialog">
       <div class="spinner v-parent" role="dialog">
-        <p class="v-child modal-child">
-          <img src="icon192.png" alt="site icon" />
+        <p class="v-child modal-child loader">
+          <img src="icon192.png" width="80" alt="site icon" />
         </p>
         <div class="d-none modal-child v-child" role="form">
-          <form onSubmit="" id="inputForm">
+          <a onclick="toggleModal();"><i class="fas fa-times"></i></a>
+
+          <form onSubmit="" id="inputForm" class="animate animate__backOutDown">
             <div class="form-group">
               <label for="place" class="lead">City name</label>
               <input

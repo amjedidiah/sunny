@@ -226,6 +226,18 @@ footer nav a:nth-child(odd) {
   left: 0;
 }
 
+.modal a {
+  padding: 10px 13px;
+  border-radius: 50%;
+  background: #fee1e2;
+  color: #2e2e2e !important;
+  font-size: 1.6em;
+  cursor: pointer;
+  bottom: -200px;
+  right: 30px;
+  position: fixed;
+}
+
 .modal .spinner,
 .modal .v-child {
   text-align: center;

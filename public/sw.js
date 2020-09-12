@@ -9,8 +9,8 @@ const filesToCache = [
   "css/home.min.css",
   "css/normalize.min.css",
   // "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-  "https://kit-free.fontawesome.com/releases/latest/css/free.min.css",
-  "https://kit.fontawesome.com/a2ea8d437a.js",
+  // "https://kit-free.fontawesome.com/releases/latest/css/free.min.css",
+  // "https://kit.fontawesome.com/a2ea8d437a.js",
   "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 ];
 const vNum = Math.floor(Math.random() * 1000000000000) + 1;

@@ -4,9 +4,8 @@ const makeCardPulse = (input) => {
 };
 
 const submitForm = (form) => {
-  const cityName = form.querySelector("#place").value
-  console.log(form);
-  loadData(cityName, true)
+  const cityName = form.querySelector("#place").value;
+  loadData(null, cityName, true);
 };
 
 document
@@ -27,13 +26,16 @@ const displayFullDate = () => {
   $("#userFullDate").html(d.toDateString());
 };
 
-const displayCity = (data) => {
+const displayCity = (data, cityName) => {
   const timezone = (data && data.timezone) || "";
-  $(".current-city").html(timezone.split("/")[1]);
+  $(".current-city").html(cityName || timezone.split("/")[1]);
 };
 
 const displayCurrent = (data) => {
   const current = data && data.current;
+
+  if(!current) return alert("No weather information found for this location")
+
   const {
     temp,
     sunset,
@@ -124,24 +126,48 @@ const displayDaily = (data) => {
   }
 };
 
-const loadData = async (cityName, isSubmitted) => {
+const getCoordinates = () =>
+  !navigator.geolocation
+    ? null
+    : navigator.geolocation.getCurrentPosition(
+        (position) =>
+          loadData({
+            latt: position.coords.latitude,
+            longt: position.coords.longitude,
+          }),
+        () => loadData()
+      );
+
+const loadData = async (coordinates, cityName, isSubmitted) => {
   try {
     displayFullDate();
+
+    let longt, latt;
     const city = isSubmitted ? cityName : "Lagos";
-    const geo = await fetch(
-      `https://geocode.xyz/${city}?json=1&auth=848427855429474377519x125986`
-    );
-    const geoData = await geo.json();
-    const latt = (geoData && geoData.latt) || 6.45506;
-    const longt = (geoData && geoData.longt) || 3.39418;
+
+    if (coordinates) {
+      longt = coordinates.longt;
+      latt = coordinates.latt;
+    } else if (cityName) {
+      const geo = await fetch(
+        `https://geocode.xyz/${city}?json=1&auth=848427855429474377519x125986`
+      );
+      const geoData = await geo.json();
+      latt = geoData && geoData.latt;
+      longt = geoData && geoData.longt;
+    } else {
+      latt = 6.45506;
+      longt = 3.39418;
+    }
+
+    if (!latt) alert("Unable to get weather for this location now. Try again");
+
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${latt}&lon=${longt}&exclude=minutely&appid=e7e80a2086b6308579f329f5eabc8869`
     );
     const data = await res.json();
 
-    console.log(data);
-
-    displayCity(data);
+    displayCity(data, cityName);
     displayCurrent(data);
     displayHourly(data);
     displayDaily(data);
@@ -154,7 +180,8 @@ const loadData = async (cityName, isSubmitted) => {
 const showForm = () => {
   toggleModal();
 
-  $(".modal-child").toggleClass("d-none");
+  $(".modal-child").removeClass("d-none");
+  $(".modal-child.loader").addClass("d-none");
 };
 
-loadData();
+getCoordinates();
