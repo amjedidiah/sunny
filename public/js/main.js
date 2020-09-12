@@ -6,6 +6,9 @@ const makeCardPulse = (input) => {
 const submitForm = (form) => {
   const cityName = form.querySelector("#place").value;
   // loadData(null, cityName, true);
+
+  if(!cityName) return inform("Please enter a city name", "danger")
+  inform(`getting weather info for ${cityName}`, "success");
   getCoordinates(cityName);
 };
 
@@ -17,17 +20,28 @@ document
   );
 
 const inform = (message, type) => {
-  const n = $("#notification");
+  const n = document.createElement("div"); //Define DIV element
+  const text = document.createTextNode(message); //Create text node
+  n.appendChild(text); //Append text node
+  document.querySelector("#body").appendChild(n); //Add it to the body
+
+  n.classList.add("notification");
 
   //set type
   //intro
-  n.removeClass("shown success danger");
-  n.html(message).addClass("shown").addClass(type);
+  n.classList.remove("shown");
+  n.classList.remove("success");
+  n.classList.remove("danger");
+  n.classList.add(`shown`);
+  n.classList.add(type);
+  n.innerHTML = message;
 
   //outro
   setTimeout(() => {
-    n.removeClass("shown success danger");
-  }, 4000);
+    n.classList.remove("shown");
+    n.classList.remove("success");
+    n.classList.remove("danger");
+  }, 3000);
 };
 
 const toggleModal = () => $(".modal").slideToggle();
@@ -144,7 +158,7 @@ const displayDaily = (data) => {
 
 const getCoordinates = (cityName) =>
   !navigator.geolocation
-    ? null
+    ? loadData(null, cityName, true)
     : navigator.geolocation.getCurrentPosition(
         (position) =>
           loadData(
@@ -166,7 +180,10 @@ const savedCities = () => {
     $(".no-cities").hide();
 
     const data = localSunny.map(
-      ({ cityName, data }, i) => `<div class="city pointer" data-cityName="${cityName}" data-count="${i}">
+      (
+        { cityName, data },
+        i
+      ) => `<div class="city pointer" data-cityName="${cityName}" data-count="${i}">
     <div>
       <h3 class="name">${cityName}</h3>
     </div>
@@ -224,8 +241,6 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
       const geoData = await geo.json();
       latt = geoData.results[0].geometry.location.lat;
       longt = geoData.results[0].geometry.location.lng;
-
-      console.log("search");
     } else if (coordinates) {
       longt = coordinates.longt;
       latt = coordinates.latt;
@@ -251,17 +266,18 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
       data = await res.json();
     } else {
       data = dat;
-      console.log("local");
     }
 
     // Check if already exists
     const localSunny = JSON.parse(localStorage.getItem("sunny_d")) || [];
 
     const duplicateData = localSunny.filter(
-      (item) => data.lon === item.data.lon && data.lat === item.data.lat
+      (item) =>
+        (data.lon === item.data.lon && data.lat === item.data.lat) ||
+        item.cityName === cityName
     );
 
-    if (duplicateData < 1 && cityName) {
+    if (duplicateData < 1) {
       localStorage.setItem(
         "sunny_d",
         JSON.stringify([...localSunny, { cityName, data }])
@@ -277,10 +293,7 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    inform(
-      `Fetched temperature info for ${cityName}`,
-      "success"
-    );
+    inform(`Fetched temperature info for ${cityName}`, "success");
   } catch (error) {
     inform(error && error.message, "danger");
   }
@@ -293,5 +306,19 @@ const showForm = () => {
   $(".modal-child.loader").addClass("d-none");
 };
 
-// getCoordinates();
-loadData();
+(function getCoords() {
+  return new Promise((resolve, reject) =>
+    navigator.permissions
+      ? // Permission API is implemented
+        navigator.permissions
+          .query({
+            name: "geolocation",
+          })
+          .then((permission) =>
+            // is geolocation granted?
+            permission.state === "granted" ? getCoordinates() : loadData()
+          )
+      : // Permission API was not implemented
+        reject(new Error("Permission API is not supported"))
+  );
+})()

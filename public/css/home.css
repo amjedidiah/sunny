@@ -267,27 +267,28 @@ footer nav a {
   font-weight: 500;
 }
 
-#notification {
+.notification {
   position: fixed;
   top: -30px;
   left: -90px;
   padding: 9px 13px;
   border-radius: 0;
+  font-weight: 700;
 
-  transition: 1s;
+  transition: 0.5s;
 }
 
-#notification.shown {
+.notification.shown {
   top: 20px;
   left: 30px;
 }
 
-#notification.shown.danger {
+.notification.shown.danger {
   background: #fe6b6e;
   color: #fee1e2;
 }
 
-#notification.shown.success {
+.notification.shown.success {
   background: #fee1e2;
   color: #2e2e2e;
 }
