@@ -15,6 +15,20 @@ document
     (e) => (e.preventDefault(), submitForm(e.target))
   );
 
+const inform = (message, type) => {
+  const n = $("#notification");
+
+  //set type
+  //intro
+  n.removeClass("shown success danger");
+  n.html(message).addClass("shown").addClass(type);
+
+  //outro
+  setTimeout(() => {
+    n.removeClass("shown success danger");
+  }, 3000);
+};
+
 const toggleModal = () => $(".modal").slideToggle();
 
 const doubler = (n) => (n.toString().length > 1 ? n : `0${n}`);
@@ -34,7 +48,8 @@ const displayCity = (data, cityName) => {
 const displayCurrent = (data) => {
   const current = data && data.current;
 
-  if(!current) return alert("No weather information found for this location")
+  if (!current)
+    return inform("No weather information found for this location", "danger");
 
   const {
     temp,
@@ -138,11 +153,52 @@ const getCoordinates = () =>
         () => loadData()
       );
 
-const loadData = async (coordinates, cityName, isSubmitted) => {
+const savedCities = () => {
+  const localSunny = JSON.parse(localStorage.getItem("sunny_d")) || [];
+
+  if (localSunny.length > 0) {
+    $(".saved-cities-container").show();
+    $(".no-cities").hide();
+
+    const data = localSunny.map(
+      ({ cityName, data }, i) => `<div class="city" data-count="${i}">
+    <div>
+      <h3 class="name">${cityName}</h3>
+    </div>
+    <div>
+      <p class="display-4">${Math.round(data.current.temp - 273)}&deg;C</p>
+      <p><i class="fas fa-cloud"></i> ${data.current.clouds}%</p>
+    </div>
+  </div>`
+    );
+
+    $(".saved-cities-container").html(data);
+
+    document
+      .querySelector(".city")
+      .addEventListener(
+        "click",
+        (e) => (
+          e.preventDefault(),
+          loadData(
+            null,
+            null,
+            null,
+            localSunny[Number(e.target.getAttribute("data-count"))].data
+          )
+        )
+      );
+  } else {
+    $(".saved-cities-container").hide();
+    $(".no-cities").show();
+  }
+};
+
+const loadData = async (coordinates, cityName, isSubmitted, dat) => {
   try {
     displayFullDate();
 
-    let longt, latt;
+    let longt, latt, data;
     const city = isSubmitted ? cityName : "Lagos";
 
     if (coordinates) {
@@ -160,20 +216,47 @@ const loadData = async (coordinates, cityName, isSubmitted) => {
       longt = 3.39418;
     }
 
-    if (!latt) alert("Unable to get weather for this location now. Try again");
+    if (!latt)
+      info("Unable to get weather for this location now. Try again", "danger");
 
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${latt}&lon=${longt}&exclude=minutely&appid=e7e80a2086b6308579f329f5eabc8869`
+    if (!dat) {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latt}&lon=${longt}&exclude=minutely&appid=e7e80a2086b6308579f329f5eabc8869`
+      );
+      data = await res.json();
+    } else {
+      data = dat;
+    }
+
+    // Check if already exists
+    const localSunny = JSON.parse(localStorage.getItem("sunny_d")) || [];
+
+    const duplicateData = localSunny.filter(
+      (item) => data.lon === item.data.lon && data.lat === item.data.lat
     );
-    const data = await res.json();
+
+    if (duplicateData < 1 && localSunny.length < 4 && cityName) {
+      localStorage.setItem(
+        "sunny_d",
+        JSON.stringify([...localSunny, { cityName, data }])
+      );
+    }
 
     displayCity(data, cityName);
     displayCurrent(data);
     displayHourly(data);
     displayDaily(data);
-    toggleModal();
+    if (!dat) toggleModal();
+    savedCities();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    inform(
+      `fetched temperature info ${cityName ? `for ${cityName}` : ""}`,
+      "success"
+    );
   } catch (error) {
-    alert(error && error.message);
+    inform(error && error.message, "danger");
   }
 };
 

@@ -10,7 +10,7 @@
 main,
 aside {
   /* border: 1px solid red; */
-  padding: 0px 5% 55px;
+  padding: 0px 5% 85px;
   flex: 1 0 100%;
 }
 
@@ -170,6 +170,10 @@ aside .saved-cities-container {
   justify-content: space-between;
 }
 
+aside .saved-cities .display-4 {
+  margin-bottom: 10px;
+}
+
 aside .saved-cities .city {
   padding: 8px 20px;
   background: #fee1e2;
@@ -180,6 +184,7 @@ aside .saved-cities .city {
   align-items: center;
   justify-content: space-between;
   flex: 1 1 40%;
+  text-transform: uppercase;
 }
 
 aside .saved-cities .city .name {
@@ -213,10 +218,6 @@ footer nav a {
   cursor: pointer;
 }
 
-footer nav a:nth-child(odd) {
-  margin-right: 20px;
-}
-
 .modal {
   width: 100%;
   height: 100%;
@@ -227,10 +228,10 @@ footer nav a:nth-child(odd) {
 }
 
 .modal a {
-  padding: 10px 13px;
+  padding: 9px 13px;
   border-radius: 50%;
-  background: #fee1e2;
-  color: #2e2e2e !important;
+  color: #fee1e2;
+  background: #2e2e2e;
   font-size: 1.6em;
   cursor: pointer;
   bottom: -200px;
@@ -264,6 +265,31 @@ footer nav a:nth-child(odd) {
   margin-bottom: 5px;
   display: block;
   font-weight: 500;
+}
+
+#notification {
+  position: fixed;
+  bottom: -30px;
+  left: -90px;
+  padding: 9px 13px;
+  border-radius: 0;
+
+  transition: 1s;
+}
+
+#notification.shown {
+  bottom: 20px;
+  left: 30px;
+}
+
+#notification.shown.danger {
+  background: #fe6b6e;
+  color: #fee1e2;
+}
+
+#notification.shown.success {
+  background: #fee1e2;
+  color: #2e2e2e;
 }
 
 @media (min-width: 992px) {

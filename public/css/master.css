@@ -6,6 +6,7 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -27,6 +28,7 @@ body::-webkit-scrollbar-thumb {
   --thumbBG: #888;
   font-size: 97.5%;
   box-sizing: border-box;
+  animation-duration: 10s; /* don't forget to set a duration! */
 }
 
 *,
