@@ -269,7 +269,7 @@ footer nav a {
 
 #notification {
   position: fixed;
-  bottom: -30px;
+  top: -30px;
   left: -90px;
   padding: 9px 13px;
   border-radius: 0;
@@ -278,7 +278,7 @@ footer nav a {
 }
 
 #notification.shown {
-  bottom: 20px;
+  top: 20px;
   left: 30px;
 }
 

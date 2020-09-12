@@ -5,7 +5,8 @@ const makeCardPulse = (input) => {
 
 const submitForm = (form) => {
   const cityName = form.querySelector("#place").value;
-  loadData(null, cityName, true);
+  // loadData(null, cityName, true);
+  getCoordinates(cityName)
 };
 
 document
@@ -141,7 +142,7 @@ const displayDaily = (data) => {
   }
 };
 
-const getCoordinates = () =>
+const getCoordinates = (cityName) =>
   !navigator.geolocation
     ? null
     : navigator.geolocation.getCurrentPosition(
@@ -149,8 +150,8 @@ const getCoordinates = () =>
           loadData({
             latt: position.coords.latitude,
             longt: position.coords.longitude,
-          }),
-        () => loadData()
+          }, cityName, true),
+        () => loadData(null, cityName, true)
       );
 
 const savedCities = () => {
@@ -201,23 +202,23 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
     let longt, latt, data;
     const city = isSubmitted ? cityName : "Lagos";
 
-    if (coordinates) {
-      longt = coordinates.longt;
-      latt = coordinates.latt;
-    } else if (cityName) {
+    if(cityName) {
       const geo = await fetch(
         `https://geocode.xyz/${city}?json=1&auth=848427855429474377519x125986`
       );
       const geoData = await geo.json();
       latt = geoData && geoData.latt;
       longt = geoData && geoData.longt;
+
+    } else if(coordinates) {
+      longt = coordinates.longt;
+      latt = coordinates.latt;
     } else {
       latt = 6.45506;
       longt = 3.39418;
     }
 
-    if (!latt)
-      info("Unable to get weather for this location now. Try again", "danger");
+    if (!latt || Number(latt) < 1) return inform("Unable to get weather for this location now. Try again", "danger");
 
     if (!dat) {
       const res = await fetch(
@@ -267,4 +268,5 @@ const showForm = () => {
   $(".modal-child.loader").addClass("d-none");
 };
 
-getCoordinates();
+  // getCoordinates();
+  loadData()
