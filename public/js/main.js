@@ -7,7 +7,7 @@ const submitForm = (form) => {
   const cityName = form.querySelector("#place").value;
   // loadData(null, cityName, true);
 
-  if(!cityName) return inform("Please enter a city name", "danger")
+  if (!cityName) return inform("Please enter a city name", "danger");
   inform(`getting weather info for ${cityName}`, "success");
   getCoordinates(cityName);
 };
@@ -51,8 +51,11 @@ const doubler = (n) => (n.toString().length > 1 ? n : `0${n}`);
 const displayFullDate = () => {
   const t = new Date().getTime();
   const d = new Date(t);
+  const h = d.getHours();
+  const m = d.getMinutes();
 
   $("#userFullDate").html(d.toDateString());
+  $("#majorTime").html(`${doubler(h)}:${doubler(m)}`);
 };
 
 const displayCity = (data, cityName) => {
@@ -79,8 +82,6 @@ const displayCurrent = (data) => {
   const sunS = new Date(sunset * 1000);
   const sunR = new Date(sunrise * 1000);
   const d = new Date(dt * 1000);
-  const h = d.getHours();
-  const m = d.getMinutes();
 
   const currentTemp = Math.round(temp - 273);
 
@@ -93,7 +94,6 @@ const displayCurrent = (data) => {
     `${doubler(sunS.getHours())}: ${doubler(sunS.getMinutes())}`
   );
 
-  $("#majorTime").html(`${doubler(h)}:${doubler(m)}`);
   $(".loading.humidity").html(`${humidity}%`);
   $(".loading.wind").html(`${wind_speed}m/h`);
   $(".loading.visibility").html(`${visibility}m`);
@@ -156,8 +156,7 @@ const displayDaily = (data) => {
   }
 };
 
-const getCoordinates = (cityName) =>
-  !navigator.geolocation
+const getCoordinates = (cityName) => !navigator.geolocation
     ? loadData(null, cityName, true)
     : navigator.geolocation.getCurrentPosition(
         (position) =>
@@ -173,7 +172,7 @@ const getCoordinates = (cityName) =>
       );
 
 const savedCities = () => {
-  const localSunny = JSON.parse(localStorage.getItem("sunny_d")) || [];
+  const localSunny = JSON.parse(localStorage.getItem("sunny")) || [];
 
   if (localSunny.length > 0) {
     $(".saved-cities-container").show();
@@ -226,6 +225,9 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
 
     let longt, latt, data;
     const city = isSubmitted ? cityName : "Lagos";
+    // Check if already exists
+    const localSunny = JSON.parse(localStorage.getItem("sunny")) || [];
+
 
     if (cityName && !dat) {
       // const geo = await fetch(
@@ -260,40 +262,49 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
       );
 
     if (!dat) {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latt}&lon=${longt}&exclude=minutely&appid=e7e80a2086b6308579f329f5eabc8869`
-      );
-      data = await res.json();
+      if (!navigator.onLine) {
+        if (localSunny.length > 0) {
+          cityName = localSunny[0].cityName;
+          inform(`We fetched offline data for ${cityName}`, "danger");
+          data = localSunny[0].data;
+        }
+      } else {
+        const res = await fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${latt}&lon=${longt}&exclude=minutely&appid=e7e80a2086b6308579f329f5eabc8869`
+        );
+        data = await res.json();
+      }
     } else {
       data = dat;
     }
 
-    // Check if already exists
-    const localSunny = JSON.parse(localStorage.getItem("sunny_d")) || [];
-
-    const duplicateData = localSunny.filter(
-      (item) =>
-        (data.lon === item.data.lon && data.lat === item.data.lat) ||
-        item.cityName === cityName
-    );
-
-    if (duplicateData < 1) {
-      localStorage.setItem(
-        "sunny_d",
-        JSON.stringify([...localSunny, { cityName, data }])
+    if (!data) {
+      inform("Do connect to the internet to get weather info", "danger");
+    } else {
+      const duplicateData = localSunny.filter(
+        (item) =>
+          (data.lon === item.data.lon && data.lat === item.data.lat) ||
+          item.cityName === cityName
       );
+
+      if (duplicateData < 1) {
+        localStorage.setItem(
+          "sunny",
+          JSON.stringify([...localSunny, { cityName, data }])
+        );
+      }
+
+      displayCity(data, cityName);
+      displayCurrent(data);
+      displayHourly(data);
+      displayDaily(data);
+      savedCities();
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
+        inform(`Fetched temperature info for ${cityName}`, "success");
     }
-
-    displayCity(data, cityName);
-    displayCurrent(data);
-    displayHourly(data);
-    displayDaily(data);
-    if (!dat) toggleModal();
-    savedCities();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
-    inform(`Fetched temperature info for ${cityName}`, "success");
+    $(".modal").slideToggle().hide()
   } catch (error) {
     inform(error && error.message, "danger");
   }
@@ -321,4 +332,4 @@ const showForm = () => {
       : // Permission API was not implemented
         reject(new Error("Permission API is not supported"))
   );
-})()
+})();
