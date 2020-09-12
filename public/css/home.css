@@ -183,7 +183,7 @@ aside .saved-cities .city {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1 1 40%;
+  flex: 0 1 45%;
   text-transform: uppercase;
 }
 
@@ -298,6 +298,19 @@ footer nav a {
     flex-basis: 50%;
     max-width: unset;
     padding: 0px 5% 40px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  main {
+    position: fixed;
+    width: 50%;
+    top: 0;
+    left: 0;
+  }
+
+  aside {
+    margin-left: 50%;
   }
 
   main .temperature-list .temperature:nth-child(1) {

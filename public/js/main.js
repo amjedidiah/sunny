@@ -6,7 +6,7 @@ const makeCardPulse = (input) => {
 const submitForm = (form) => {
   const cityName = form.querySelector("#place").value;
   // loadData(null, cityName, true);
-  getCoordinates(cityName)
+  getCoordinates(cityName);
 };
 
 document
@@ -27,7 +27,7 @@ const inform = (message, type) => {
   //outro
   setTimeout(() => {
     n.removeClass("shown success danger");
-  }, 3000);
+  }, 4000);
 };
 
 const toggleModal = () => $(".modal").slideToggle();
@@ -147,10 +147,14 @@ const getCoordinates = (cityName) =>
     ? null
     : navigator.geolocation.getCurrentPosition(
         (position) =>
-          loadData({
-            latt: position.coords.latitude,
-            longt: position.coords.longitude,
-          }, cityName, true),
+          loadData(
+            {
+              latt: position.coords.latitude,
+              longt: position.coords.longitude,
+            },
+            cityName,
+            true
+          ),
         () => loadData(null, cityName, true)
       );
 
@@ -162,7 +166,7 @@ const savedCities = () => {
     $(".no-cities").hide();
 
     const data = localSunny.map(
-      ({ cityName, data }, i) => `<div class="city" data-count="${i}">
+      ({ cityName, data }, i) => `<div class="city pointer" data-cityName="${cityName}" data-count="${i}">
     <div>
       <h3 class="name">${cityName}</h3>
     </div>
@@ -175,20 +179,24 @@ const savedCities = () => {
 
     $(".saved-cities-container").html(data);
 
-    document
-      .querySelector(".city")
-      .addEventListener(
+    const savedCities = [...document.querySelectorAll(".city")];
+
+    for (let i = 0; i < savedCities.length; i++) {
+      const element = savedCities[i];
+
+      element.addEventListener(
         "click",
         (e) => (
           e.preventDefault(),
           loadData(
             null,
-            null,
+            e.target.getAttribute("data-cityName"),
             null,
             localSunny[Number(e.target.getAttribute("data-count"))].data
           )
         )
       );
+    }
   } else {
     $(".saved-cities-container").hide();
     $(".no-cities").show();
@@ -202,23 +210,39 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
     let longt, latt, data;
     const city = isSubmitted ? cityName : "Lagos";
 
-    if(cityName) {
+    if (cityName && !dat) {
+      // const geo = await fetch(
+      //   `https://geocode.xyz/${city}?json=1&auth=848427855429474377519x125986`
+      // );
+      // const geoData = await geo.json();
+      // latt = geoData && geoData.latt;
+      // longt = geoData && geoData.longt;
+
       const geo = await fetch(
-        `https://geocode.xyz/${city}?json=1&auth=848427855429474377519x125986`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyCzKooz5xemm7uiiHi01ZB3S9LDe4inYHE`
       );
       const geoData = await geo.json();
-      latt = geoData && geoData.latt;
-      longt = geoData && geoData.longt;
+      latt = geoData.results[0].geometry.location.lat;
+      longt = geoData.results[0].geometry.location.lng;
 
-    } else if(coordinates) {
+      console.log("search");
+    } else if (coordinates) {
       longt = coordinates.longt;
       latt = coordinates.latt;
+
+      cityName = cityName ? cityName : "your current position";
     } else {
       latt = 6.45506;
       longt = 3.39418;
+
+      cityName = cityName ? cityName : "Lagos";
     }
 
-    if (!latt || Number(latt) < 1) return inform("Unable to get weather for this location now. Try again", "danger");
+    if (!latt)
+      return inform(
+        "Unable to get weather for this location now. Try again",
+        "danger"
+      );
 
     if (!dat) {
       const res = await fetch(
@@ -227,6 +251,7 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
       data = await res.json();
     } else {
       data = dat;
+      console.log("local");
     }
 
     // Check if already exists
@@ -236,7 +261,7 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
       (item) => data.lon === item.data.lon && data.lat === item.data.lat
     );
 
-    if (duplicateData < 1 && localSunny.length < 4 && cityName) {
+    if (duplicateData < 1 && cityName) {
       localStorage.setItem(
         "sunny_d",
         JSON.stringify([...localSunny, { cityName, data }])
@@ -253,7 +278,7 @@ const loadData = async (coordinates, cityName, isSubmitted, dat) => {
     document.documentElement.scrollTop = 0;
 
     inform(
-      `fetched temperature info ${cityName ? `for ${cityName}` : ""}`,
+      `Fetched temperature info for ${cityName}`,
       "success"
     );
   } catch (error) {
@@ -268,5 +293,5 @@ const showForm = () => {
   $(".modal-child.loader").addClass("d-none");
 };
 
-  // getCoordinates();
-  loadData()
+// getCoordinates();
+loadData();
